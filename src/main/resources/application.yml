@@ -1,0 +1,9 @@
+server:
+  port: 9099
+  tomcat:
+    basedir: /tmp_data/hovel
+
+spring:
+  profiles:
+    active: dev
+
