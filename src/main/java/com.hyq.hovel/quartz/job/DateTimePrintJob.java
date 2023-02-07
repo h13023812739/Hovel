@@ -13,7 +13,7 @@ public class DateTimePrintJob extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
         System.out.println(jobExecutionContext.getJobDetail().getJobDataMap().get("key1")+"=========================="+dateFormat.format(Calendar.getInstance().getTime()));
-//        System.out.println(jobExecutionContext.getJobDetail().getJobDataMap().get("key2")+"=========================="+LocalDate.now());
+        System.out.println(jobExecutionContext.getJobDetail().getJobDataMap().get("key2")+"=========================="+LocalDate.now());
 
     }
 }

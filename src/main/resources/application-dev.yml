@@ -1,17 +1,43 @@
 spring:
     profiles:
         active: dev
-#    datasource:
-#        type: com.zaxxer.hikari.HikariDataSource
-#        url: jdbc:mysql://192.168.1.41:3306/lsoms?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&tinyInt1isBit=false
-#        username: root
-#        password: root
-#        hikari:
-#            data-source-properties:
-#                cachePrepStmts: true
-#                prepStmtCacheSize: 250
-#                prepStmtCacheSqlLimit: 2048
-#                useServerPrepStmts: true
+    datasource:
+        master:
+            jdbc-url: jdbc:mysql://192.168.1.41:3306/hovel_master?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+            username: root
+            password: root
+            driverClassName: com.mysql.jdbc.Driver
+    #        driver-class-name: com.mysql.jdbc.Driver
+            # 下面为连接池的补充设置，应用到上面所有数据源中
+            # 初始化大小，最小，最大
+            initial-size: 20
+            min-idle: 20
+            max-active: 50
+            # 配置获取连接等待超时的时间
+            max-wait: 60000
+            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+            time-between-eviction-runs-millis: 60000
+            # 配置一个连接在池中最小生存的时间，单位是毫秒
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+        slave:
+            jdbc-url: jdbc:mysql://192.168.1.41:3306/hovel_slave?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+            username: root
+            password: root
+            driverClassName: com.mysql.jdbc.Driver
+            # 下面为连接池的补充设置，应用到上面所有数据源中
+            # 初始化大小，最小，最大
+            initial-size: 20
+            min-idle: 20
+            max-active: 50
+            # 配置获取连接等待超时的时间
+            max-wait: 60000
+            # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+            time-between-eviction-runs-millis: 60000
+            # 配置一个连接在池中最小生存的时间，单位是毫秒
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+
 #    mail:
 #        username: fanyongjie1004@163.com
 #        password: HPQYRJCWNHIGXNOU
@@ -98,8 +124,28 @@ spring:
 #        ROOT: INFO
 #application:
 #    test-exemple: test
-#
-## 演播室
-#studio:
-#    # 查询演播室排播是否结束
-#    checkScheduleIsEnd: http://10.183.60.131:9393/oes-lsoms/oes-lsoms-studio-manage/studio-program/outer-url/find-program-status
+
+mybatis-plus:
+    mapper-locations: classpath*:/mapper/*.xml
+    typeAliasesPackage: com.wondertek.cadip.commons.entity #开启类型别名，降低冗余的全限定类名书写
+    configuration:
+        mapUnderscoreToCamelCase: true  #开启自动驼峰命名规则（camel case）映射
+        # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置sql打印日志
+    global-config:
+        db-config:
+            logic-not-delete-value: 1
+            logic-delete-value: 0
+
+hovel:
+    mail:
+        host: smtp.163.com
+        username: 13023812739@163.com
+        password: PTJDWAFDQEZYBUBW
+        transport:
+            protocol: smtp
+        smtp:
+            auth: true
+            starttls:
+                enable: true
+
+
