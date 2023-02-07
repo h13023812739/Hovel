@@ -140,7 +140,8 @@ hovel:
     mail:
         host: smtp.163.com
         username: 13023812739@163.com
-        password: PTJDWAFDQEZYBUBW
+#        邮箱授权码
+        password: XXXXXXXXXX
         transport:
             protocol: smtp
         smtp:
