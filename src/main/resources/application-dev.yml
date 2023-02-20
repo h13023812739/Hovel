@@ -38,99 +38,20 @@ spring:
             min-evictable-idle-time-millis: 300000
             validation-query: SELECT 1 FROM DUAL
 
-#    mail:
-#        username: fanyongjie1004@163.com
-#        password: HPQYRJCWNHIGXNOU
-#        host: smtp.163.com
-#    redis:
-#        port: 6379
-#        password:
-#        host: 192.168.1.33
-#        database: 0
+
     servlet:
         multipart:
             # 文件上传大小
             max-file-size: 100000MB
             max-request-size: 100001MB
-#    quartz:
-#        #相关属性配置
-#        properties:
-#            org:
-#                quartz:
-#                    scheduler:
-#                        instanceName: DefaultQuartzScheduler
-#                        instanceId: AUTO
-#                    jobStore:
-#                        class: org.quartz.impl.jdbcjobstore.JobStoreTX
-#                        driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
-#                        tablePrefix: QRTZ_
-#                        isClustered: false
-#                        clusterCheckinInterval: 10000
-#                        useProperties: true
-#                    threadPool:
-#                        class: org.quartz.simpl.SimpleThreadPool
-#                        threadCount: 10
-#                        threadPriority: 5
-#                        threadsInheritContextClassLoaderOfInitializingThread: true
-#                    dataSource:
-#                        default:
-#                            URL: jdbc:mysql://192.168.1.41:3306/lsoms?useUnicode=true&characterEncoding=utf8&useSSL=false&autoReconnect=true&tinyInt1isBit=false
-#                            user: root
-#                            password: root
-#                            driver: com.mysql.jdbc.Driver
-#                            provider: hikaricp
-#
-#        #数据库方式
-#        job-store-type: jdbc
-#        #初始化表结构
-#        #jdbc:
-#        #initialize-schema: never
 
-#    jpa:
-#        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-#        database: MYSQL
-#        show-sql: false
-#        ddl-auto: update
-#        properties:
-#            hibernate.id.new_generator_mappings: true
-#            hibernate.cache.use_second_level_cache: false
-#            hibernate.cache.use_query_cache: false
-#            hibernate.generate_statistics: false
-#        hibernate:
-#            naming:
-#                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#        open-in-view: false
-#    kafka:
-#        consumer:
-#            key-deserializer: org.apache.kafka.common.serialization.IntegerDeserializer
-#            value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#            enable-auto-commit: true
-#            auto-offset-reset: earliest
-#            client-id: oes-lsoms-studio-program
-#            group-id: lsoms-show-schedule
-#        bootstrap-servers: 192.168.1.63:9092
-#sso:
-#    appCode: -1102
-#    urls:
-#        exclude: "/actuator/**,/favicon.ico,/info,/health,/error,/v2/api-docs,/configuration/ui,/swagger-resources,\
-#        /configuration/security,/swagger-ui.html,/webjars/**,\
-#        /**/outer-url/**"
-#    ssoServer:
-#        innerUrlPath: http://192.168.1.79:8084/sso
-#        outerUrlPath: http://180.167.180.242:9000/sso
-#
-#logging:
-#    level:
-#        ROOT: INFO
-#application:
-#    test-exemple: test
 
 mybatis-plus:
     mapper-locations: classpath*:/mapper/*.xml
-    typeAliasesPackage: com.wondertek.cadip.commons.entity #开启类型别名，降低冗余的全限定类名书写
+    typeAliasesPackage: com.hyq.hovel.entity #开启类型别名，降低冗余的全限定类名书写
     configuration:
         mapUnderscoreToCamelCase: true  #开启自动驼峰命名规则（camel case）映射
-        # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置sql打印日志
+#         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置sql打印日志
     global-config:
         db-config:
             logic-not-delete-value: 1

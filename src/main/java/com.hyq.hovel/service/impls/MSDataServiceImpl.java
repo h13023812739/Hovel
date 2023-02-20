@@ -1,5 +1,6 @@
 package com.hyq.hovel.service.impls;
 
+import com.hyq.hovel.annotation.SharedDataSource;
 import com.hyq.hovel.entity.HovelTask;
 import com.hyq.hovel.service.MSDataService;
 import com.hyq.hovel.mapper.HovelTaskMapper;
@@ -14,8 +15,12 @@ public class MSDataServiceImpl implements MSDataService {
     private HovelTaskMapper hovelTaskMapper;
 
     @Override
+//    @SharedDataSource("slave")
     public HovelTask getHovekTask(Long taskId) {
-        HovelTask hovelTask = hovelTaskMapper.selectById(1l);
+        System.out.println(hovelTaskMapper.getClass());
+//        HovelTask hovelTask = hovelTaskMapper.findHovelTaskById(10086l);
+        HovelTask hovelTask = hovelTaskMapper.selectById(10086l);
+
         return hovelTask;
     }
 }

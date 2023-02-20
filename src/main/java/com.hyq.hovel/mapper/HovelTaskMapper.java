@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface HovelTaskMapper extends BaseMapper<HovelTask> {
+    HovelTask findHovelTaskById(Long taskId);
 }

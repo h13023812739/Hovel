@@ -14,6 +14,6 @@ public class HovelTask {
     public Long taskId;
 
     @TableField("task_name")
-    public Long taskName;
+    public String taskName;
 
 }

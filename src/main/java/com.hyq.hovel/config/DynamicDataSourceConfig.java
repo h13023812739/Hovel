@@ -1,5 +1,7 @@
 package com.hyq.hovel.config;
 
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -23,8 +25,8 @@ import java.util.Map;
 public class DynamicDataSourceConfig {
 
     @Bean
-    public org.apache.ibatis.session.Configuration configuration() {
-        org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+    public MybatisConfiguration configuration() {
+        MybatisConfiguration configuration = new MybatisConfiguration();
         configuration.setMapUnderscoreToCamelCase(true);
         configuration.setLogImpl(StdOutImpl.class);
         configuration.setUseColumnLabel(true);
@@ -62,15 +64,15 @@ public class DynamicDataSourceConfig {
     @Bean(name = "SqlSessionFactory")
     public SqlSessionFactory SqlSessionFactory(@Qualifier("dynamicDataSource") DataSource dynamicDataSource)
             throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        MybatisSqlSessionFactoryBean  bean = new MybatisSqlSessionFactoryBean();
         // jdbc数据源整合mybatis的SqlSessionFactory
         bean.setDataSource(dynamicDataSource);
         // 设置配置: 类似mybatis-config.xml
         bean.setConfiguration(configuration());
-        bean.setTypeAliasesPackage("com.lonk.demo.template.entity");
+//        bean.setTypeAliasesPackage("com.lonk.demo.template.entity");
         // bean.setPlugins();
 //        bean.setMapperLocations(
-//                new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+//                new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/*.xml"));
         return bean.getObject();
     }
 

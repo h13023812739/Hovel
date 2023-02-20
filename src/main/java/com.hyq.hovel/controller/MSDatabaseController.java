@@ -5,6 +5,7 @@ import com.hyq.hovel.model.ResultBean;
 import com.hyq.hovel.service.MSDataService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -14,9 +15,13 @@ public class MSDatabaseController {
     private MSDataService msDataService;
 
     @GetMapping("/MSTest")
+    @ResponseBody
     public ResultBean getTaskName(Long taskId){
         HovelTask hovelTask = msDataService.getHovekTask(taskId);
-        return ResultBean.ok(hovelTask.getTaskName());
+        if(hovelTask != null){
+            return ResultBean.ok(hovelTask.getTaskName());
+        }
+        return ResultBean.error("查询结果为空");
     }
 
 }

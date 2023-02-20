@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyq.hovel.entity.HovelTask">
+
+    <update id="updateHovelTask" parameterType="com.hyq.hovel.entity.HovelTask">
+        UPDATE hovel_task SET task_name =#{taskName1} WHERE task_name=#{taskName2}
+        <if test="taskId != null">
+            and task_id = #{taskId}
+        </if>
+    </update>
+
+    <select id="findHovelTaskById" resultType="com.hyq.hovel.entity.HovelTask">
+        select * from hovel_task
+        where task_id = #{taskId}
+    </select>
+
+</mapper>
