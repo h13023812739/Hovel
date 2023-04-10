@@ -2,6 +2,7 @@ package org.hyq.hovel;
 
 import org.hyq.hovel.model.ClassA;
 import org.hyq.hovel.model.ClassB;
+import org.hyq.hovel.model.maze.Maze;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,8 +13,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
-@SpringBootApplication
-@EntityScan("org.hyq.cadip.hovel.entity")
+@SpringBootApplication(scanBasePackages = {"org.hyq"})
+@EntityScan("org.hyq.cadip.hovel")
 @MapperScan(basePackages = {"org.hyq.cadip.hovel.mapper"})
 @EnableAsync
 public class Application {
@@ -31,6 +32,11 @@ public class Application {
     public ClassB classB(){
         return new ClassB();
     }
+
+//    @Bean(initMethod = "init")
+//    public Maze maze(){
+//        return new Maze();
+//    }
 }
 
 

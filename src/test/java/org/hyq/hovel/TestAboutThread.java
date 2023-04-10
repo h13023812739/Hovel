@@ -204,12 +204,12 @@ public class TestAboutThread {
 
     /**
      * Thread内部操作全局或外部AtomicReference对象 风险！！
-     * 如果操作对象和循环相关 会影响循环预期
+     * 如果操作对象和循环相关（用作循环条件） 会影响循环预期
      * 如果操作对象在主线程中用作判断，则判断是否生效的时机会不稳定
      */
     @Test
     public void threadRiskTest() {
-//        AtomicReference<String> str = new AtomicReference<>("太行山");
+        AtomicReference<String> str = new AtomicReference<>("太行山");
         AtomicInteger i = new AtomicInteger(0);
         final String a = "福泽万里";
 
@@ -227,8 +227,8 @@ public class TestAboutThread {
                 }else {
                     System.out.println(Thread.currentThread().getName()+"CAS失败"+in);
                 }
-//                System.out.println(Thread.currentThread().getName()+"想要去"+str);
-//                str.compareAndSet("太行山","长白山");
+                System.out.println(Thread.currentThread().getName()+"想要去"+str);
+                str.compareAndSet("太行山","长白山");
                 System.out.println(a);
             },"Thread-"+i).start();
         }
