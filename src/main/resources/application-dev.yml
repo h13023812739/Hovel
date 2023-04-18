@@ -38,6 +38,13 @@ spring:
             min-evictable-idle-time-millis: 300000
             validation-query: SELECT 1 FROM DUAL
 
+    data:
+        mongodb:
+            uri: mongodb://127.0.0.1:27017/
+            database: singal
+            username: hyq
+            password: 123456
+            authentication-database: admin
 
     servlet:
         multipart:
